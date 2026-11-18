@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1037729657252",
+    "project_id": "app-multi-66b40",
+    "storage_bucket": "app-multi-66b40.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037729657252:android:5421ba82d6c4098269d131",
+        "android_client_info": {
+          "package_name": "com.example.GPSsaiakera"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1Ch_yI5bYdFWQ6AN0Pxm3i8OMsTnOQ28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

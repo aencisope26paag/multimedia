@@ -158,6 +158,17 @@ fun LocationScreen(viewModel: LocationViewModel = viewModel()) {
             OutlinedButton(onClick = { shareLocation(context, location) }, modifier = Modifier.fillMaxWidth()) {
                 Text("Compartir ubicación")
             }
+            Spacer(Modifier.height(8.dp))
+            Button(onClick = viewModel::saveCurrentPlace, modifier = Modifier.fillMaxWidth()) {
+                Text("Guardar este lugar")
+            }
+        }
+        if (state.savedPlaces.isNotEmpty()) {
+            Spacer(Modifier.height(24.dp))
+            SavedPlacesSection(
+                places = state.savedPlaces,
+                onDelete = viewModel::deleteSavedPlace
+            )
         }
     }
 }

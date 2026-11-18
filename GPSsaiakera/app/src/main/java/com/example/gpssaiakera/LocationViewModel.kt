@@ -10,19 +10,49 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.catch
 
 data class LocationUiState(
     val location: Location? = null,
     val address: String? = null,
     val isLoading: Boolean = false,
-    val error: String? = null
+    val error: String? = null,
+    val savedPlaces: List<SavedPlace> = emptyList()
 )
+
 
 class LocationViewModel(app: Application) : AndroidViewModel(app) {
 
     private val locationUtils = LocationUtils(app)
 
     private val _uiState = MutableStateFlow(LocationUiState())
+
+    private val savedPlacesRepository = SavedPlacesRepository()
+
+    init {
+        viewModelScope.launch {
+            savedPlacesRepository.observe()
+                .catch { e -> _uiState.update { it.copy(error = "Firebase: ${e.localizedMessage}") } }
+                .collect { places -> _uiState.update { it.copy(savedPlaces = places) } }
+        }
+    }
+
+    fun saveCurrentPlace() {
+        val state = _uiState.value
+        val location = state.location ?: return
+        savedPlacesRepository.save(
+            SavedPlace(
+                name = state.address ?: "Lugar guardado",
+                address = state.address,
+                latitude = location.latitude,
+                longitude = location.longitude
+            )
+        ) { message -> _uiState.update { it.copy(error = message) } }
+    }
+
+    fun deleteSavedPlace(id: String) {
+        savedPlacesRepository.delete(id) { message -> _uiState.update { it.copy(error = message) } }
+    }
     val uiState: StateFlow<LocationUiState> = _uiState.asStateFlow()
     private var lastGeocoded: Location? = null
 
