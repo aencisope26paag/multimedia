@@ -15,7 +15,26 @@
       "oauth_client": [],
       "api_key": [
         {
-
+          "current_key": "AIzaSyA1Ch_yI5bYdFWQ6AN0Pxm3i8OMsTnOQ28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037729657252:android:a9a0332607e781fb69d131",
+        "android_client_info": {
+          "package_name": "com.example.gpssaiakera"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1Ch_yI5bYdFWQ6AN0Pxm3i8OMsTnOQ28"
         }
       ],
       "services": {
